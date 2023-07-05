@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-		if (Input.GetKeyDown(KeyCode.Z))
+		if (Input.GetKeyDown(KeyCode.UpArrow))
 		{
 			jump = true;
 		}
@@ -56,12 +56,12 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void OnFall()
 	{
-		//animator.SetBool("IsJumping", true);
+		animator.SetBool("IsJumping", true);
 	}
 
 	public void OnLanding()
 	{
-		//animator.SetBool("IsJumping", false);
+		animator.SetBool("IsJumping", false);
 	}
 
 	void FixedUpdate ()

@@ -9755,7 +9755,7 @@ GameObject:
   - component: {fileID: 3376547501896493650}
   - component: {fileID: 3387861111695030814}
   m_Layer: 1
-  m_Name: DrawCharacter
+  m_Name: Melee
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9849,6 +9849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9955788a5eaffa49a9297f38eaa6202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rpgClass: Melee
   dmgValue: 4
   throwableObject: {fileID: 5532974359214069763, guid: 340067e8e5a097546ad175f1d00a6ece, type: 3}
   attackCheck: {fileID: 3327683022291952218}

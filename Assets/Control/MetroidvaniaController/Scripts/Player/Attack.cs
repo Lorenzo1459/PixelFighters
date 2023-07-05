@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+	public string rpgClass;
 	public float dmgValue = 4;
 	public GameObject throwableObject;
 	public Transform attackCheck;
@@ -28,11 +29,14 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.X) && canAttack)
+		if (Input.GetKeyDown(KeyCode.Z) && canAttack)
 		{
-			canAttack = false;
+			canAttack = false;			
 			animator.SetBool("IsAttacking", true);
-			StartCoroutine(AttackCooldown());
+			if(rpgClass == "Mage")
+				StartCoroutine(AttackCooldownMage());
+			if(rpgClass == "Melee")
+				StartCoroutine(AttackCooldownMelee());
 		}
 
 		if (Input.GetKeyDown(KeyCode.V))
@@ -44,9 +48,15 @@ public class Attack : MonoBehaviour
 		}
 	}
 
-	IEnumerator AttackCooldown()
+	IEnumerator AttackCooldownMage()
 	{
 		yield return new WaitForSeconds(1f);
+		animator.SetBool("IsAttacking", false);
+		canAttack = true;
+	}
+	IEnumerator AttackCooldownMelee()
+	{
+		yield return new WaitForSeconds(0.25f);
 		animator.SetBool("IsAttacking", false);
 		canAttack = true;
 	}
