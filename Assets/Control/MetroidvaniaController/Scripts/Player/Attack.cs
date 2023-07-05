@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Attack : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Attack : MonoBehaviour
 
 	public GameObject cam;
 
+	public PhotonView view;
+
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -23,41 +26,44 @@ public class Attack : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        
+        view = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.Z) && canAttack)
-		{
-			canAttack = false;			
-			animator.SetBool("IsAttacking", true);
-			if(rpgClass == "Mage")
-				StartCoroutine(AttackCooldownMage());
-			if(rpgClass == "Melee")
-				StartCoroutine(AttackCooldownMelee());
-		}
+		if(view.IsMine){
+			if (Input.GetKeyDown(KeyCode.Z) && canAttack)
+			{
+				canAttack = false;			
+				animator.SetBool("IsAttacking", true);
+				if(rpgClass == "Mage")
+					StartCoroutine(AttackCooldownMage());
+				if(rpgClass == "Melee")				
+					StartCoroutine(AttackCooldownMelee());
+			}
 
-		if (Input.GetKeyDown(KeyCode.V))
-		{
-			GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
-			Vector2 direction = new Vector2(transform.localScale.x, 0);
-			throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction; 
-			throwableWeapon.name = "ThrowableWeapon";
+			if (Input.GetKeyDown(KeyCode.V))
+			{
+				GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
+				Vector2 direction = new Vector2(transform.localScale.x, 0);
+				throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction; 
+				throwableWeapon.name = "ThrowableWeapon";
+			}
 		}
 	}
 
 	IEnumerator AttackCooldownMage()
 	{
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0f);
 		animator.SetBool("IsAttacking", false);
 		canAttack = true;
 	}
 	IEnumerator AttackCooldownMelee()
 	{
-		yield return new WaitForSeconds(0.25f);
+		yield return new WaitForSeconds(0f);
 		animator.SetBool("IsAttacking", false);
+		
 		canAttack = true;
 	}
 
