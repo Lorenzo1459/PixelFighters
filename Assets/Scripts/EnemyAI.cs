@@ -11,6 +11,7 @@ public class EnemyAI : MonoBehaviour
     public Transform enemyGPX;
 
     public Animator animator;
+    public Attack npcAttack;
 
     Path path;
     int currentWaypoint = 0;
@@ -23,10 +24,13 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         seeker = GetComponent<Seeker>();
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();  
+        npcAttack = this.GetComponent<Attack>();
 
         InvokeRepeating("UpdatePath", 0f, .5f);
-        seeker.StartPath(rb.position, target.position, OnPathComplete);
+        //seeker.StartPath(rb.position, target.position, OnPathComplete);
+
+        InvokeRepeating("callAttackNPC",0f, .5f);
     }
 
     void UpdatePath(){
@@ -36,6 +40,10 @@ public class EnemyAI : MonoBehaviour
         }
         animator.SetInteger("AnimState", 2);
 
+    }
+
+    void callAttackNPC(){
+        npcAttack.AttackNPC();
     }
 
     void OnPathComplete(Path p){
@@ -62,7 +70,7 @@ public class EnemyAI : MonoBehaviour
         Vector2 force = direction * speed * Time.deltaTime;
 
         rb.AddForce(force);
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);        
 
         if(distance < nextWaypointDistance){
             currentWaypoint++;

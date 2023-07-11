@@ -44,6 +44,16 @@ public class Attack : MonoBehaviour
 		}
 	}
 
+	public void AttackNPC(){
+		//animator.SetTrigger
+		Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+		foreach(Collider2D enemy in hitEnemies){
+			Debug.Log("We hit" + enemy.name);
+			enemy.GetComponent<CharacterController2D>().TakeDamage(attackDamage, transform.position);
+		}
+	}
+
 	void OnDrawGizmosSelected()
 	{
 		if(attackPoint == null)
@@ -106,7 +116,7 @@ public class Attack : MonoBehaviour
 				{
 					dmgValue = -dmgValue;
 				}
-				collidersEnemies[i].gameObject.SendMessage("ApplyDamage", dmgValue);
+				collidersEnemies[i].gameObject.SendMessage("TakeDamage", dmgValue);
 				cam.GetComponent<CameraFollow>().ShakeCamera();
 			}
 		}

@@ -172,11 +172,11 @@ public class Ally : MonoBehaviour
 				{
 					dmgValue = -dmgValue;
 				}
-				collidersEnemies[i].gameObject.SendMessage("ApplyDamage", dmgValue);
+				collidersEnemies[i].gameObject.SendMessage("TakeDamage", dmgValue);
 			}
 			else if (collidersEnemies[i].gameObject.tag == "Player")
 			{
-				collidersEnemies[i].gameObject.GetComponent<CharacterController2D>().ApplyDamage(2f, transform.position);
+				collidersEnemies[i].gameObject.GetComponent<CharacterController2D>().TakeDamage(2f, transform.position);
 			}
 		}
 		StartCoroutine(WaitToAttack(0.5f));
