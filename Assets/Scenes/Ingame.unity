@@ -790,6 +790,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Melee 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5665915765514484263, guid: 974c7a698ce85624eb52d499a5342c55, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5671450961517031853, guid: 974c7a698ce85624eb52d499a5342c55, type: 3}
       propertyPath: m_RootOrder
       value: 11

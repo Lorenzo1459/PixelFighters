@@ -268,7 +268,7 @@ public class CharacterController2D : MonoBehaviour
 	{
 		if (!invincible)
 		{
-			animator.SetBool("Hit", true);
+			animator.SetTrigger("Hit");
 			life -= damage;
 			Vector2 damageDir = Vector3.Normalize(transform.position - position) * 40f ;
 			m_Rigidbody2D.velocity = Vector2.zero;
@@ -334,7 +334,7 @@ public class CharacterController2D : MonoBehaviour
 
 	IEnumerator WaitToDead()
 	{
-		animator.SetBool("IsDead", true);
+		animator.SetTrigger("Death");
 		canMove = false;
 		invincible = true;
 		GetComponent<Attack>().enabled = false;

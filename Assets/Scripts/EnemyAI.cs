@@ -30,7 +30,7 @@ public class EnemyAI : MonoBehaviour
         InvokeRepeating("UpdatePath", 0f, .5f);
         //seeker.StartPath(rb.position, target.position, OnPathComplete);
 
-        InvokeRepeating("callAttackNPC",0f, .5f);
+        InvokeRepeating("callAttackNPC",0f, 1f);
     }
 
     void UpdatePath(){
@@ -44,6 +44,7 @@ public class EnemyAI : MonoBehaviour
 
     void callAttackNPC(){
         npcAttack.AttackNPC();
+        animator.SetTrigger("Attack");
     }
 
     void OnPathComplete(Path p){

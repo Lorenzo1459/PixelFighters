@@ -9869,7 +9869,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   view: {fileID: 0}
   attackPoint: {fileID: 3783819486850157219}
-  attackRange: 2.5
+  attackRange: 1.5
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
