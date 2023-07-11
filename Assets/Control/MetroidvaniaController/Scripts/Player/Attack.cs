@@ -15,8 +15,13 @@ public class Attack : MonoBehaviour
 	public bool isTimeToCheck = false;
 
 	public GameObject cam;
-
 	public PhotonView view;
+	public Transform attackPoint;
+	public float attackRange = 0.5f;
+	public LayerMask enemyLayers;
+	public int attackDamage = 40;
+	public float attackRate = 2f;
+	float nextAttackTime = 0f;
 
 	private void Awake()
 	{
@@ -29,26 +34,48 @@ public class Attack : MonoBehaviour
         view = GetComponent<PhotonView>();
     }
 
+	void AttackMelee(){
+		//animator.SetTrigger
+		Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+		foreach(Collider2D enemy in hitEnemies){
+			Debug.Log("We hit" + enemy.name);
+			enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+		}
+	}
+
+	void OnDrawGizmosSelected()
+	{
+		if(attackPoint == null)
+			return;
+		
+		Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+	}
+
     // Update is called once per frame
     void Update()
     {
 		if(view.IsMine){
-			if (Input.GetKeyDown(KeyCode.Z) && canAttack)
-			{
-				canAttack = false;			
-				animator.SetBool("IsAttacking", true);
-				if(rpgClass == "Mage")
-					StartCoroutine(AttackCooldownMage());
-				if(rpgClass == "Melee")				
-					StartCoroutine(AttackCooldownMelee());
-			}
+			if(Time.time >= nextAttackTime){
+				if (Input.GetKeyDown(KeyCode.Z) && canAttack)
+				{
+					AttackMelee();
+					nextAttackTime = (Time.time + 1f) / attackRate;
+					canAttack = false;			
+					animator.SetBool("IsAttacking", true);
+					if(rpgClass == "Mage")
+						StartCoroutine(AttackCooldownMage());
+					if(rpgClass == "Melee")				
+						StartCoroutine(AttackCooldownMelee());
+				}
 
-			if (Input.GetKeyDown(KeyCode.V))
-			{
-				GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
-				Vector2 direction = new Vector2(transform.localScale.x, 0);
-				throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction; 
-				throwableWeapon.name = "ThrowableWeapon";
+				if (Input.GetKeyDown(KeyCode.V))
+				{
+					GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
+					Vector2 direction = new Vector2(transform.localScale.x, 0);
+					throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction; 
+					throwableWeapon.name = "ThrowableWeapon";
+				}
 			}
 		}
 	}

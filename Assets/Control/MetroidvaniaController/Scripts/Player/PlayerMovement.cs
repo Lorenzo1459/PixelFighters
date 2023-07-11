@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour {
 				animator.SetBool("IsMoving", false);			
 			}
 
-			animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+			//animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
 			if (Input.GetKeyDown(KeyCode.UpArrow))
 			{
