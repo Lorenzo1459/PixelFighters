@@ -90,10 +90,10 @@ public class EnemySpawner : MonoBehaviour
         // Find a random index between zero and one less than the number of spawn points.
         if(alternateBruteSpawn == false){
             // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
-            Instantiate(this.enemy[2],this.spawnPoints[0].position, this.spawnPoints[0].rotation);
+            Instantiate(this.enemy[2],this.spawnPoints[1].position, this.spawnPoints[1].rotation);
             alternateBruteSpawn = true;
         }else if(alternateBruteSpawn == true){
-            Instantiate(this.enemy[2],this.spawnPoints[1].position, this.spawnPoints[1].rotation);
+            Instantiate(this.enemy[2],this.spawnPoints[0].position, this.spawnPoints[0].rotation);
             alternateBruteSpawn = false;
         }   
     }
