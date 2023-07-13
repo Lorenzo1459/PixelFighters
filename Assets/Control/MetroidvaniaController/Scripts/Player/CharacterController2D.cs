@@ -48,8 +48,10 @@ public class CharacterController2D : MonoBehaviour
 	public UnityEvent OnFallEvent;
 	public UnityEvent OnLandEvent;
 
+	public HealthBar healthBar;
+
 	[System.Serializable]
-	public class BoolEvent : UnityEvent<bool> { }	
+	private class BoolEvent : UnityEvent<bool> { }	
 
 
 	private void Awake()
@@ -62,6 +64,12 @@ public class CharacterController2D : MonoBehaviour
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
+	}
+
+	public void Start()
+	{		
+		healthBar = GameObject.FindGameObjectWithTag("HPBar").GetComponent<HealthBar>();
+		healthBar.SetMaxHealth((int)life);
 	}
 	
 
@@ -270,6 +278,7 @@ public class CharacterController2D : MonoBehaviour
 		{
 			animator.SetTrigger("Hit");
 			life -= damage;
+			healthBar.SetHealth((int)life);
 			Vector2 damageDir = Vector3.Normalize(transform.position - position) * 40f ;
 			m_Rigidbody2D.velocity = Vector2.zero;
 			m_Rigidbody2D.AddForce(damageDir * 10);

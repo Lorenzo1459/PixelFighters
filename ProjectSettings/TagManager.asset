@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - HPBar
+  - Bandit
+  - Mage
+  - Score
+  - Brute
   layers:
   - Default
   - TransparentFX

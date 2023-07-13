@@ -42,7 +42,7 @@ public class Attack : MonoBehaviour
 			Debug.Log("We hit" + enemy.name);
 			enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
 		}
-	}
+	}	
 
 	public void AttackNPC(){
 		//animator.SetTrigger
@@ -69,14 +69,11 @@ public class Attack : MonoBehaviour
 			if(Time.time >= nextAttackTime){
 				if (Input.GetKeyDown(KeyCode.Z) && canAttack)
 				{
-					AttackMelee();
+					AttackMelee();					
 					nextAttackTime = (Time.time + 1f) / attackRate;
 					canAttack = false;			
-					animator.SetBool("IsAttacking", true);
-					if(rpgClass == "Mage")
-						StartCoroutine(AttackCooldownMage());
-					if(rpgClass == "Melee")				
-						StartCoroutine(AttackCooldownMelee());
+					animator.SetBool("IsAttacking", true);						
+					StartCoroutine(AttackCooldownMelee());
 				}
 
 				if (Input.GetKeyDown(KeyCode.V))

@@ -9817,11 +9817,10 @@ GameObject:
   - component: {fileID: 9184022510542246074}
   - component: {fileID: 4961544780884578560}
   - component: {fileID: 3783819487214498663}
-  - component: {fileID: 5464526626400127190}
   - component: {fileID: 5464526626400127185}
   m_Layer: 7
   m_Name: Enemy (1)
-  m_TagString: Enemy
+  m_TagString: Bandit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9869,12 +9868,12 @@ MonoBehaviour:
   cam: {fileID: 0}
   view: {fileID: 0}
   attackPoint: {fileID: 3783819486850157219}
-  attackRange: 1.5
+  attackRange: 1.2
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
   attackDamage: 40
-  attackRate: 2
+  attackRate: 1
 --- !u!212 &6026197571753145781
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10149,25 +10148,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5764891312120044151}
+  score: {fileID: 0}
   aiPath: {fileID: 0}
-  maxHealth: 100
---- !u!114 &5464526626400127190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5859497925585341723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7cd5bb348b96ef47ba04d6de088eaaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   target: {fileID: 5671450961517031853, guid: 974c7a698ce85624eb52d499a5342c55, type: 3}
-  speed: 400
+  speed: 200
   nextWaypointDistance: 3
   enemyGPX: {fileID: 5856215081282733713}
-  animator: {fileID: 5764891312120044151}
+  maxHealth: 100
   npcAttack: {fileID: 5819623298865048239}
 --- !u!114 &5464526626400127185
 MonoBehaviour:

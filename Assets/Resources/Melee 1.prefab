@@ -9840,6 +9840,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  healthBar: {fileID: 3435987320872227275, guid: 6568397fc0cc4794292a08c3664a25e8, type: 3}
 --- !u!114 &5706916703805480339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9854,7 +9855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rpgClass: Melee
   dmgValue: 4
-  throwableObject: {fileID: 5532974359214069763, guid: 340067e8e5a097546ad175f1d00a6ece, type: 3}
+  throwableObject: {fileID: 0}
   attackCheck: {fileID: 5668347259088010091}
   animator: {fileID: 5760521831673441611}
   canAttack: 1
